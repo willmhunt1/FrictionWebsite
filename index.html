@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ===== SEO ===== -->
+  <title>Friction Frog: Your phone, but boring on purpose.</title>
+  <meta name="description" content="Friction Frog puts one calm breath between you and the apps that eat your day, then turns the tempting ones grayscale. A free iOS digital-wellness app. Free, forever.">
+  <link rel="canonical" href="https://frictionfrog.com/">
+  <meta name="theme-color" content="#36761F">
+
+  <!-- ===== Open Graph / social ===== -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://frictionfrog.com/">
+  <meta property="og:title" content="Friction Frog: Your phone, but boring on purpose.">
+  <meta property="og:description" content="One calm breath between you and the apps that eat your day, then grayscale for the tempting ones. Free, forever.">
+  <meta property="og:image" content="https://frictionfrog.com/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Friction Frog: Your phone, but boring on purpose.">
+  <meta name="twitter:description" content="One calm breath between you and the apps that eat your day, then grayscale for the tempting ones. Free, forever.">
+  <meta name="twitter:image" content="https://frictionfrog.com/assets/og-image.png">
+
+  <!-- ===== Icons (frog.png placeholder until the new logo) ===== -->
+  <link rel="icon" href="frog.png">
+  <link rel="apple-touch-icon" href="frog.png">
+
+  <!-- ===== Fonts (already part of the brand) ===== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- =====================================================================
+       ANALYTICS: GoatCounter (cookieless, no personal data).
+       1. Create a free site at https://www.goatcounter.com/
+       2. Replace YOURCODE below with your site code.
+       This is the ONLY place you need to paste your token.
+       ===================================================================== -->
+  <script data-goatcounter="https://frictionfrog.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- ===================== NAV ===================== -->
+  <header class="nav">
+    <div class="container nav__inner">
+      <a class="nav__brand" href="#top" aria-label="Friction Frog home">
+        <span class="logo logo--mark" role="img" aria-label="Friction Frog"></span>
+        <span class="wordmark">Friction Frog</span>
+      </a>
+
+      <nav class="nav__links" aria-label="Primary">
+        <a href="#features">Features</a>
+        <a href="#how">How it works</a>
+        <a href="#why">Why</a>
+        <a href="#contact">Contact</a>
+        <a href="support.html">Support the project</a>
+      </nav>
+
+      <div class="nav__cta">
+        <a class="btn btn--primary btn--sm desktop-download" data-download-cta
+           href="https://apps.apple.com/us/app/friction-frog/id6751865850">Download</a>
+        <button class="nav__toggle" aria-label="Menu" aria-expanded="false" aria-controls="primary-nav">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+            <line x1="4" y1="7" x2="20" y2="7"></line>
+            <line x1="4" y1="12" x2="20" y2="12"></line>
+            <line x1="4" y1="17" x2="20" y2="17"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- ===================== HERO ===================== -->
+    <section class="hero">
+      <div class="container hero__grid">
+        <div class="hero__copy">
+          <div class="hero__brand">
+            <span class="logo logo--mark" role="img" aria-label="Friction Frog"></span>
+            <span class="wordmark">Friction Frog</span>
+          </div>
+          <h1>Your phone, but boring on purpose.</h1>
+          <p class="hero__sub">Friction Frog puts one calm breath between you and the apps that eat your day, then turns the tempting ones grayscale. Free, forever.</p>
+          <div class="hero__cta">
+            <a class="appstore-badge" data-download-cta
+               href="https://apps.apple.com/us/app/friction-frog/id6751865850"
+               aria-label="Download Friction Frog on the App Store">
+              <img src="assets/app-store-badge.svg" alt="Download on the App Store" width="180" height="54">
+            </a>
+          </div>
+          <p class="hero__trust">Free forever · No ads · No dark patterns · iPhone · iOS 18.4+ 🐸</p>
+        </div>
+
+        <div class="hero__media">
+          <div class="phone">
+            <span class="phone__btn phone__btn--silent" aria-hidden="true"></span>
+            <span class="phone__btn phone__btn--volup" aria-hidden="true"></span>
+            <span class="phone__btn phone__btn--voldown" aria-hidden="true"></span>
+            <span class="phone__btn phone__btn--power" aria-hidden="true"></span>
+            <div class="phone__screen">
+              <div class="phone__placeholder" aria-hidden="true">
+                <span class="logo" role="img" aria-label="Friction Frog"></span>
+                <small>Grayscale demo</small>
+              </div>
+              <video class="demo-video" autoplay muted loop playsinline
+                     poster="assets/grayscale-poster.png"
+                     aria-label="Demo of Friction Frog turning apps grayscale">
+                <source src="assets/grayscale-demo.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PROBLEM / EMPATHY ===================== -->
+    <section class="section empathy">
+      <div class="container reveal">
+        <p>You're not weak for losing hours to your phone. <strong>Billion-dollar teams engineered it</strong> to be exactly that hard to put down, and a little friction beats raw willpower every time.</p>
+      </div>
+    </section>
+
+    <!-- ===================== FEATURES ===================== -->
+    <section class="section section--alt" id="features">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="eyebrow">What it does</span>
+          <h2>A gentle nudge, not a lecture</h2>
+          <p>Three small changes that quietly break the autopilot.</p>
+        </div>
+        <div class="cards">
+          <article class="card reveal">
+            <div class="card__icon" aria-hidden="true">🌬️</div>
+            <h3>Breathe before you scroll</h3>
+            <p>Pick the apps you want to slow down. Open one and Friction Frog asks for a short breathing exercise first; you get a few minutes, then it locks again. Just enough friction to break the autopilot.</p>
+          </article>
+          <article class="card reveal">
+            <div class="card__icon" aria-hidden="true">🎨</div>
+            <h3>Grayscale, your way</h3>
+            <p>Color is what makes the scroll hard to quit. Go full-phone grayscale with color exceptions for the apps you need (Photos, Camera, Maps), or keep color and gray out only the worst offenders. No more triple-tapping a shortcut you forget to switch back.</p>
+          </article>
+          <article class="card reveal">
+            <div class="card__icon" aria-hidden="true">⏱️</div>
+            <h3>Limits that fit you</h3>
+            <p>Set your own time window per app. One app's "quick check" might be 1 minute, another's 30. You decide.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== HOW IT WORKS ===================== -->
+    <section class="section" id="how">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="eyebrow">How it works</span>
+          <h2>Set it up once. Feel it all day.</h2>
+        </div>
+        <div class="steps">
+          <div class="step reveal">
+            <div class="step__num">1</div>
+            <h3>Pick your apps</h3>
+            <p>Choose the ones that quietly eat your time.</p>
+          </div>
+          <div class="step reveal">
+            <div class="step__num">2</div>
+            <h3>Breathe to unlock</h3>
+            <p>One calm breath stands between you and the scroll, so you scroll less.</p>
+          </div>
+          <div class="step reveal">
+            <div class="step__num">3</div>
+            <h3>Go grayscale</h3>
+            <p>Drain the color so the bright, shiny stuff loses its grip.</p>
+          </div>
+        </div>
+        <p class="note reveal">Built on Apple's Screen Time / Family Controls, and it walks you through the grayscale Shortcuts setup.</p>
+      </div>
+    </section>
+
+    <!-- ===================== DEMO ===================== -->
+    <section class="section section--alt" id="demo">
+      <div class="container demo__grid">
+        <div class="demo__copy reveal">
+          <span class="eyebrow">See it</span>
+          <h2>One breath, then you're in.</h2>
+          <p>Open a blocked app and the frog asks for a short breathing exercise first. That tiny pause is usually enough to remember you didn't actually want to open it.</p>
+        </div>
+        <div class="demo__media reveal">
+          <div class="phone">
+            <span class="phone__btn phone__btn--silent" aria-hidden="true"></span>
+            <span class="phone__btn phone__btn--volup" aria-hidden="true"></span>
+            <span class="phone__btn phone__btn--voldown" aria-hidden="true"></span>
+            <span class="phone__btn phone__btn--power" aria-hidden="true"></span>
+            <div class="phone__screen">
+              <div class="phone__placeholder" aria-hidden="true">
+                <span class="logo" role="img" aria-label="Friction Frog"></span>
+                <small>Breathing demo</small>
+              </div>
+              <video class="demo-video" autoplay muted loop playsinline
+                     poster="assets/breathing-poster.png"
+                     aria-label="Demo of the Friction Frog breathing gate">
+                <source src="assets/breathing-demo.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== WHY ===================== -->
+    <section class="section" id="why">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="eyebrow">Why Friction Frog</span>
+          <h2>Built to actually help, not to hook you</h2>
+        </div>
+        <div class="cards">
+          <article class="card reveal">
+            <div class="card__icon" aria-hidden="true">💚</div>
+            <h3>Truly free</h3>
+            <p>Multi-app blocking and every grayscale feature are free forever. No paywall on the part that helps.</p>
+          </article>
+          <article class="card reveal">
+            <div class="card__icon" aria-hidden="true">🛡️</div>
+            <h3>Reliable</h3>
+            <p>Built to just work, every time. No mystery failures, no easy bypasses.</p>
+          </article>
+          <article class="card reveal">
+            <div class="card__icon" aria-hidden="true">🤝</div>
+            <h3>On your side</h3>
+            <p>No ads, no dark patterns. The business isn't built on keeping you hooked, kind of the opposite.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== FINAL CTA ===================== -->
+    <section class="section cta-band">
+      <div class="container cta-band__inner reveal">
+        <span class="logo logo--cta" role="img" aria-label="Friction Frog"></span>
+        <h2>Get a little of your day back. 🐸</h2>
+        <a class="appstore-badge" data-download-cta
+           href="https://apps.apple.com/us/app/friction-frog/id6751865850"
+           aria-label="Download Friction Frog on the App Store">
+          <img src="assets/app-store-badge.svg" alt="Download on the App Store" width="180" height="54">
+        </a>
+      </div>
+    </section>
+
+    <!-- ===================== CONTACT (App Store Support URL target) ===================== -->
+    <section class="section contact" id="contact">
+      <div class="container reveal">
+        <div class="section__head">
+          <span class="eyebrow">Contact</span>
+          <h2>Questions, bugs, or a story to share?</h2>
+        </div>
+        <p>I'd love to hear from you.</p>
+        <!-- Address is assembled by app.js so bots can't trivially scrape it.
+             <noscript> fallback is entity-encoded for the same reason. -->
+        <a class="email-link" data-email data-keep-text href="#">
+          <noscript>thefrog&#64;frictionfrog&#46;com</noscript>
+          <span aria-hidden="true">✉️ Email the developer</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <span class="footer__made">
+          <span class="logo logo--mark" role="img" aria-label="Friction Frog"></span>
+          Made with 💚 for digital wellness
+        </span>
+        <nav class="footer__links" aria-label="Footer">
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="support.html">Support the project</a>
+        </nav>
+        <div class="footer__social">
+          <a href="https://instagram.com/frictionfrog" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <a href="https://tiktok.com/@frictionfrog" target="_blank" rel="noopener noreferrer">TikTok</a>
+          <a href="https://youtube.com/@frictionfrog" target="_blank" rel="noopener noreferrer">YouTube</a>
+        </div>
+      </div>
+      <div class="footer__legal">
+        © <span data-year>2026</span> Friction Frog · @frictionfrog
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================== STICKY DOWNLOAD ===================== -->
+  <div class="sticky-cta">
+    <a class="btn btn--accent" data-download-cta
+       href="https://apps.apple.com/us/app/friction-frog/id6751865850">⬇ Download for free</a>
+  </div>
+
+  <script src="app.js" defer></script>
+</body>
+</html>

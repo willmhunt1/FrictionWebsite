@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- =====================================================================
+       PRETTY-LINK REDIRECT: must run first, before anything renders.
+       GitHub Pages serves this 404 for unknown paths, so /ig, /tiktok, /yt
+       and /reddit get bounced to the homepage with a ?src= channel tag,
+       which app.js then normalizes and records. (UTM query links remain the
+       primary, documented method. These are just a convenience.)
+       ===================================================================== -->
+  <script>
+    (function () {
+      var map = {
+        ig: 'ig', insta: 'ig', instagram: 'ig',
+        tiktok: 'tiktok', tt: 'tiktok',
+        yt: 'yt', youtube: 'yt',
+        reddit: 'reddit', r: 'reddit'
+      };
+      var seg = location.pathname.replace(/^\/+|\/+$/g, '').split('/')[0].toLowerCase();
+      if (map[seg]) location.replace('/?src=' + map[seg]);
+    })();
+  </script>
+
+  <title>Page not found | Friction Frog</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="frog.png">
+  <link rel="apple-touch-icon" href="frog.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="notfound">
+    <span class="logo" role="img" aria-label="Friction Frog"></span>
+    <h1>This lily pad doesn't exist 🐸</h1>
+    <p>The page you're after hopped away. Let's get you back to solid ground.</p>
+    <a class="btn btn--primary" href="/">Back to Friction Frog</a>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <span class="footer__made">
+          <span class="logo logo--mark" role="img" aria-label="Friction Frog"></span>
+          Made with 💚 for digital wellness
+        </span>
+        <nav class="footer__links" aria-label="Footer">
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="support.html">Support the project</a>
+        </nav>
+        <div class="footer__social">
+          <a href="https://instagram.com/frictionfrog" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <a href="https://tiktok.com/@frictionfrog" target="_blank" rel="noopener noreferrer">TikTok</a>
+          <a href="https://youtube.com/@frictionfrog" target="_blank" rel="noopener noreferrer">YouTube</a>
+        </div>
+      </div>
+      <div class="footer__legal">
+        © <span data-year>2026</span> Friction Frog · @frictionfrog
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,367 @@
+/* =====================================================================
+   Friction Frog: shared design system
+   Clean, modern wellness aesthetic. Used by index.html, privacy.html, 404.html.
+   ===================================================================== */
+
+/* ---- Design tokens ------------------------------------------------- */
+:root {
+  /* Brand palette */
+  --forest: #36761F;
+  --lime: #A1BA3C;
+  --mint: #E8F8E1;
+  --dark: #1B3714;
+  --white: #FFFFFF;
+  --accent: #F4B740;
+
+  /* One-line logo swap point (decorative frog mascots reference this) */
+  --logo-url: url('frog.png');
+
+  /* Semantic */
+  --ink: var(--dark);
+  --ink-soft: #3c5a33;
+  --surface: var(--white);
+  --surface-alt: var(--mint);
+  --border: rgba(27, 55, 20, 0.10);
+
+  /* Shape & depth */
+  --radius: 20px;
+  --radius-sm: 12px;
+  --radius-lg: 28px;
+  --shadow-sm: 0 2px 10px rgba(27, 55, 20, 0.07);
+  --shadow-md: 0 10px 30px rgba(27, 55, 20, 0.10);
+  --shadow-lg: 0 20px 50px rgba(27, 55, 20, 0.14);
+
+  /* Layout */
+  --maxw: 1140px;
+  --nav-h: 68px;
+
+  /* Type */
+  --font-head: 'Nunito', system-ui, -apple-system, sans-serif;
+  --font-accent: 'Quicksand', system-ui, -apple-system, sans-serif;
+}
+
+/* ---- Reset --------------------------------------------------------- */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--nav-h) + 16px); }
+
+body {
+  font-family: var(--font-head);
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--white);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img, svg, video { display: block; max-width: 100%; }
+
+a { color: var(--forest); }
+
+h1, h2, h3 {
+  font-family: var(--font-head);
+  font-weight: 800;
+  color: var(--forest);
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+}
+
+/* ---- Layout helpers ----------------------------------------------- */
+.container { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+
+.section { padding: 96px 0; }
+.section--alt { background: var(--surface-alt); }
+.section__head { max-width: 720px; margin: 0 auto 56px; text-align: center; }
+.section__head h2 { font-size: clamp(28px, 4vw, 40px); margin-bottom: 14px; }
+.section__head p { color: var(--ink-soft); font-size: 1.05rem; }
+.eyebrow {
+  font-family: var(--font-accent); font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.12em; font-size: 0.8rem; color: var(--forest);
+  display: inline-block; margin-bottom: 10px;
+}
+
+/* ---- Logo mascot (one-line swap via --logo-url) -------------------- */
+.logo {
+  display: inline-block;
+  background: var(--logo-url) center / contain no-repeat;
+  /* TEMP: frog.png is a 32px pixel sprite, so render crisp instead of blurry when enlarged.
+     Remove this line when the new hi-res logo replaces frog.png. */
+  image-rendering: pixelated;
+}
+.logo--mark { width: 40px; height: 40px; }
+.logo--hero { width: 128px; height: 128px; } /* 4× the 32px source for clean pixels */
+.logo--cta  { width: 96px;  height: 96px; }  /* 3× */
+
+/* ---- Buttons ------------------------------------------------------- */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-accent); font-weight: 700; font-size: 1rem;
+  padding: 13px 24px; border-radius: 999px; border: 0; cursor: pointer;
+  text-decoration: none; transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+  white-space: nowrap;
+}
+.btn--primary { background: var(--forest); color: var(--white); box-shadow: var(--shadow-sm); }
+.btn--primary:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); background: #2e6519; }
+.btn--accent { background: var(--accent); color: var(--dark); box-shadow: var(--shadow-sm); }
+.btn--accent:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.btn--ghost { background: transparent; color: var(--forest); border: 2px solid rgba(54,118,31,.25); }
+.btn--ghost:hover { background: var(--mint); }
+.btn--sm { padding: 9px 18px; font-size: .92rem; }
+
+/* ---- App Store badge (primary CTA) + graceful fallback ------------- */
+.appstore-badge {
+  display: inline-block; line-height: 0;
+  /* Apple clear-space: ~10% of badge height padding all round */
+  padding: 6px;
+  border-radius: 12px;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.appstore-badge:hover { transform: translateY(-2px); }
+.appstore-badge img { height: 54px; width: auto; }
+
+/* JS-rendered fallback when the SVG is missing; looks like Apple's badge */
+.appstore-badge--fallback {
+  display: inline-flex; align-items: center; gap: 10px;
+  height: 54px; padding: 0 18px; background: #000; color: #fff;
+  border-radius: 11px; font-family: var(--font-head); text-decoration: none;
+  box-shadow: var(--shadow-sm);
+}
+.appstore-badge--fallback .apple-glyph { font-size: 26px; line-height: 1; }
+.appstore-badge--fallback .badge-txt { display: flex; flex-direction: column; line-height: 1.15; }
+.appstore-badge--fallback .badge-txt small { font-size: 10px; letter-spacing: .02em; opacity: .9; }
+.appstore-badge--fallback .badge-txt b { font-size: 19px; font-weight: 600; }
+
+/* ---- Navigation --------------------------------------------------- */
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  height: var(--nav-h);
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: saturate(180%) blur(12px);
+  -webkit-backdrop-filter: saturate(180%) blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.nav__inner { display: flex; align-items: center; justify-content: space-between; height: 100%; }
+.nav__brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; }
+.nav__brand .wordmark {
+  font-family: var(--font-head); font-weight: 800; font-size: 1.18rem; color: var(--forest);
+  letter-spacing: -0.01em;
+}
+.nav__links { display: flex; align-items: center; gap: 4px; }
+.nav__links a {
+  font-family: var(--font-accent); font-weight: 600; font-size: .96rem;
+  color: var(--ink-soft); text-decoration: none; padding: 8px 12px; border-radius: 999px;
+  transition: background .15s ease, color .15s ease;
+}
+.nav__links a:hover { background: var(--mint); color: var(--forest); }
+.nav__links a.active { color: var(--forest); background: var(--mint); }
+.nav__cta { display: inline-flex; align-items: center; gap: 12px; }
+
+.nav__toggle {
+  display: none; background: none; border: 0; cursor: pointer; padding: 8px;
+  color: var(--forest);
+}
+.nav__toggle svg { width: 26px; height: 26px; }
+
+/* ---- Hero --------------------------------------------------------- */
+.hero {
+  background: linear-gradient(180deg, var(--mint) 0%, rgba(232, 248, 225, 0) 100%);
+  padding: 72px 0 88px;
+}
+.hero__grid {
+  display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 56px; align-items: center;
+}
+.hero__brand { display: inline-flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+.hero__brand .wordmark {
+  font-family: var(--font-head); font-weight: 800; font-size: 1.5rem; color: var(--forest);
+}
+.hero h1 { font-size: clamp(36px, 5.4vw, 60px); margin-bottom: 18px; }
+.hero__sub { font-size: clamp(1.05rem, 1.6vw, 1.25rem); color: var(--ink-soft); max-width: 30ch; margin-bottom: 28px; }
+.hero__cta { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
+.hero__trust { font-family: var(--font-accent); font-weight: 600; color: var(--ink-soft); font-size: .95rem; }
+.hero__media { display: flex; justify-content: center; }
+
+/* ---- Phone mockup ------------------------------------------------- */
+.phone {
+  position: relative; width: 280px;
+  background: #0e0e12; border-radius: 44px; padding: 11px;
+  box-shadow: var(--shadow-lg);
+}
+/* No fake notch: the screen recordings already include the Dynamic Island. */
+.phone__screen {
+  position: relative; width: 100%; aspect-ratio: 1206 / 2622; /* match the recording exactly */
+  border-radius: 34px; overflow: hidden;
+  background: linear-gradient(160deg, var(--mint), #cfe9c2);
+  display: flex; align-items: center; justify-content: center;
+}
+/* placeholder shown behind the video; visible if the video/poster is missing */
+.phone__placeholder {
+  position: absolute; inset: 0; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 10px; text-align: center;
+  color: var(--forest); font-family: var(--font-accent); font-weight: 700;
+}
+.phone__placeholder .logo { width: 64px; height: 64px; opacity: .8; }
+.phone__placeholder small { color: var(--ink-soft); font-weight: 600; }
+/* Fill the screen, then scale up very slightly to cover the rounded edges
+   with no hairline background bleed. Anchored to the top (transform-origin),
+   so the space above the Dynamic Island is preserved exactly as recorded and
+   the tiny crop falls at the bottom. Horizontal growth stays symmetric. */
+.phone__screen video {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; z-index: 1;
+  transform: scale(1.02);
+  transform-origin: center top;
+}
+
+/* Fake hardware buttons (decorative) — left: action + volume, right: side button */
+.phone__btn { position: absolute; background: #0a0a0d; width: 3px; }
+.phone__btn--silent  { left: -3px;  top: 17%; height: 26px; border-radius: 2px 0 0 2px; }
+.phone__btn--volup   { left: -3px;  top: 25%; height: 50px; border-radius: 2px 0 0 2px; }
+.phone__btn--voldown { left: -3px;  top: 36%; height: 50px; border-radius: 2px 0 0 2px; }
+.phone__btn--power   { right: -3px; top: 24%; height: 72px; border-radius: 0 2px 2px 0; }
+
+/* ---- Problem / empathy -------------------------------------------- */
+.empathy { text-align: center; }
+.empathy p { font-size: clamp(1.15rem, 2.2vw, 1.5rem); max-width: 720px; margin: 0 auto; color: var(--ink); line-height: 1.55; }
+.empathy strong { color: var(--forest); }
+
+/* ---- Cards (features / why) --------------------------------------- */
+.cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 32px; box-shadow: var(--shadow-sm); transition: transform .2s ease, box-shadow .2s ease;
+}
+.card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.card__icon {
+  width: 56px; height: 56px; border-radius: 16px; background: var(--mint);
+  display: flex; align-items: center; justify-content: center; font-size: 28px; margin-bottom: 18px;
+}
+.card h3 { font-size: 1.3rem; margin-bottom: 10px; }
+.card p { color: var(--ink-soft); font-size: 1rem; }
+.card__img { margin-top: 18px; border-radius: var(--radius-sm); }
+
+/* ---- How it works (steps) ----------------------------------------- */
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; counter-reset: step; }
+.step { position: relative; padding: 32px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-sm); }
+.step__num {
+  width: 44px; height: 44px; border-radius: 50%; background: var(--forest); color: var(--white);
+  display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.2rem;
+  margin-bottom: 16px;
+}
+.step h3 { font-size: 1.2rem; margin-bottom: 8px; }
+.step p { color: var(--ink-soft); }
+.note {
+  text-align: center; margin-top: 36px; color: var(--ink-soft); font-size: .95rem;
+  font-family: var(--font-accent); font-weight: 600;
+}
+
+/* ---- Demo section ------------------------------------------------- */
+.demo__grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 56px; align-items: center; }
+.demo__copy h2 { font-size: clamp(28px, 4vw, 40px); margin-bottom: 14px; }
+.demo__copy p { color: var(--ink-soft); font-size: 1.1rem; }
+
+/* ---- Final CTA band ----------------------------------------------- */
+.cta-band { background: var(--forest); color: var(--white); text-align: center; }
+.cta-band h2 { color: var(--white); font-size: clamp(28px, 4.2vw, 44px); margin-bottom: 28px; }
+.cta-band .logo { margin: 0 auto 22px; }
+.cta-band__inner { display: flex; flex-direction: column; align-items: center; }
+
+/* ---- Contact ------------------------------------------------------ */
+.contact { text-align: center; }
+.contact p { max-width: 600px; margin: 0 auto 22px; color: var(--ink-soft); font-size: 1.1rem; }
+.email-link {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-accent); font-weight: 700; font-size: 1.05rem;
+  color: var(--forest); background: var(--mint); padding: 12px 22px; border-radius: 999px;
+  text-decoration: none; transition: transform .18s ease, box-shadow .18s ease;
+}
+.email-link:hover { transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+
+/* ---- Footer ------------------------------------------------------- */
+.footer { background: var(--dark); color: var(--mint); padding: 56px 0 40px; }
+.footer__grid { display: flex; flex-wrap: wrap; gap: 24px; justify-content: space-between; align-items: center; }
+.footer__made { display: inline-flex; align-items: center; gap: 10px; font-weight: 700; }
+.footer__links { display: flex; flex-wrap: wrap; gap: 22px; }
+.footer__links a { color: var(--mint); text-decoration: none; font-family: var(--font-accent); font-weight: 600; opacity: .9; }
+.footer__links a:hover { opacity: 1; text-decoration: underline; }
+.footer__social { display: flex; gap: 16px; }
+.footer__social a { color: var(--mint); text-decoration: none; opacity: .9; font-family: var(--font-accent); font-weight: 600; }
+.footer__social a:hover { opacity: 1; }
+.footer__legal { width: 100%; margin-top: 28px; padding-top: 22px; border-top: 1px solid rgba(232,248,225,.15); font-size: .88rem; opacity: .75; }
+
+/* ---- Sticky / floating download button ---------------------------- */
+.sticky-cta {
+  position: fixed; left: 50%; bottom: 22px; transform: translate(-50%, 140%);
+  z-index: 200; opacity: 0; transition: transform .35s cubic-bezier(.2,.8,.2,1), opacity .25s ease;
+  box-shadow: var(--shadow-lg);
+}
+.sticky-cta.visible { transform: translate(-50%, 0); opacity: 1; }
+.sticky-cta .btn--accent { padding: 14px 26px; font-size: 1.02rem; }
+
+/* ---- Reveal-on-scroll animation ----------------------------------- */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.in { opacity: 1; transform: none; }
+
+/* ---- Gentle frog idle --------------------------------------------- */
+.logo--hero, .logo--cta { animation: frog-idle 4.5s ease-in-out infinite; }
+@keyframes frog-idle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-9px); }
+}
+
+/* ---- Simple inner pages (privacy / 404) --------------------------- */
+.page { max-width: 760px; margin: 0 auto; padding: 64px 24px 80px; }
+.page h1 { font-size: clamp(30px, 5vw, 44px); margin-bottom: 8px; }
+.page .updated { color: var(--ink-soft); font-family: var(--font-accent); font-weight: 600; margin-bottom: 36px; }
+.page h2 { font-size: 1.4rem; margin: 36px 0 12px; }
+.page p, .page li { color: var(--ink); margin-bottom: 14px; }
+.page ul { padding-left: 22px; }
+.back-home { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 28px; text-decoration: none; font-family: var(--font-accent); font-weight: 700; color: var(--forest); }
+
+.notfound { min-height: 70vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 40px 24px; }
+.notfound .logo { width: 128px; height: 128px; margin-bottom: 24px; }
+
+/* Lighter/smaller no-pressure copy (support page) */
+.fineprint { color: var(--ink-soft); font-size: .92rem; opacity: .85; }
+.notfound h1 { font-size: clamp(28px, 5vw, 44px); margin-bottom: 12px; }
+.notfound p { color: var(--ink-soft); font-size: 1.1rem; margin-bottom: 28px; }
+
+/* ---- Responsive --------------------------------------------------- */
+@media (max-width: 880px) {
+  .hero__grid, .demo__grid { grid-template-columns: 1fr; gap: 40px; }
+  .hero__sub { max-width: none; }
+  .hero__media { order: -1; }
+  .demo__media { display: flex; justify-content: center; }
+  .cards, .steps { grid-template-columns: 1fr; }
+  .section { padding: 72px 0; }
+
+  .nav__toggle { display: inline-flex; }
+  .nav__links {
+    position: absolute; top: var(--nav-h); left: 0; right: 0;
+    flex-direction: column; align-items: stretch; gap: 0;
+    background: var(--white); border-bottom: 1px solid var(--border);
+    padding: 8px; box-shadow: var(--shadow-md);
+    display: none;
+  }
+  .nav__links.open { display: flex; }
+  .nav__links a { padding: 14px 16px; }
+  .nav .desktop-download { display: none; }
+}
+
+@media (min-width: 881px) {
+  .nav__links { display: flex !important; }
+}
+
+@media (max-width: 520px) {
+  .footer__grid { flex-direction: column; align-items: flex-start; }
+  .phone { width: 240px; }
+}
+
+/* ---- Reduced motion ----------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .reveal { opacity: 1 !important; transform: none !important; }
+  .sticky-cta.visible { transform: translate(-50%, 0); }
+}

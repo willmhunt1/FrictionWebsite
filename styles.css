@@ -329,12 +329,46 @@ h1, h2, h3 {
 
 /* ---- Responsive --------------------------------------------------- */
 @media (max-width: 880px) {
-  .hero__grid, .demo__grid { grid-template-columns: 1fr; gap: 40px; }
+  .demo__grid { grid-template-columns: 1fr; gap: 40px; }
   .hero__sub { max-width: none; }
-  .hero__media { order: -1; }
   .demo__media { display: flex; justify-content: center; }
   .cards, .steps { grid-template-columns: 1fr; }
   .section { padding: 72px 0; }
+
+  /* ---- Mobile hero: shrink the phone so the headline + App Store badge
+     land within the first screen on load, while the page still scrolls.
+     The hero fills exactly one screen; the phone (on top) takes whatever
+     vertical space is left after the copy, so the button is always in view. */
+  .hero { padding: 16px 0 40px; }
+  .hero__grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    min-height: calc(100vh - var(--nav-h) - 56px);   /* fallback for old browsers */
+    min-height: calc(100svh - var(--nav-h) - 56px);  /* stable: ignores dynamic toolbars */
+  }
+  .hero__media {
+    order: -1;
+    flex: 1 1 auto;
+    min-height: 0;          /* allow the phone to shrink below its natural size */
+    /* default align-items: stretch lets the phone fill the leftover height */
+  }
+  .hero__copy { flex: 0 0 auto; }
+  .hero__brand { margin-bottom: 12px; }
+  .hero h1 { font-size: clamp(30px, 6.5vw, 44px); margin-bottom: 12px; }
+  .hero__sub { margin-bottom: 18px; }
+
+  /* Phone is sized by the leftover height (via align-self: stretch); width
+     follows from the aspect ratio. Capped so it never dominates a tall screen. */
+  .hero__media .phone {
+    width: auto;
+    align-self: stretch;
+    max-height: 56svh;
+    min-height: 220px;
+    aspect-ratio: 1206 / 2622;
+    padding: 9px;
+  }
+  .hero__media .phone__screen { aspect-ratio: auto; height: 100%; }
 
   .nav__toggle { display: inline-flex; }
   .nav__links {
@@ -355,7 +389,9 @@ h1, h2, h3 {
 
 @media (max-width: 520px) {
   .footer__grid { flex-direction: column; align-items: flex-start; }
-  .phone { width: 240px; }
+  /* Hero phone now sizes itself by height (above); only the demo phone
+     keeps a fixed width on small screens. */
+  .demo__media .phone { width: 240px; }
 }
 
 /* ---- Reduced motion ----------------------------------------------- */

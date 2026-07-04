@@ -177,6 +177,7 @@ h1, h2, h3 {
 }
 .hero h1 { font-size: clamp(36px, 5.4vw, 60px); margin-bottom: 18px; }
 .hero__sub { font-size: clamp(1.05rem, 1.6vw, 1.25rem); color: var(--ink-soft); max-width: 30ch; margin-bottom: 28px; }
+.hero__sub--tight { display: none; }   /* mobile-only shorter line (shown in the responsive block) */
 .hero__cta { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
 .hero__trust { font-family: var(--font-accent); font-weight: 600; color: var(--ink-soft); font-size: .95rem; }
 .hero__media { display: flex; justify-content: center; }
@@ -335,40 +336,44 @@ h1, h2, h3 {
   .cards, .steps { grid-template-columns: 1fr; }
   .section { padding: 72px 0; }
 
-  /* ---- Mobile hero: shrink the phone so the headline + App Store badge
-     land within the first screen on load, while the page still scrolls.
-     The hero fills exactly one screen; the phone (on top) takes whatever
-     vertical space is left after the copy, so the button is always in view. */
-  .hero { padding: 16px 0 40px; }
+  /* ---- Mobile hero: a calmer, less-busy layout. A properly-shaped phone
+     up top, a breath of open space, then the headline + App Store badge
+     pinned toward the bottom so they're in view on load. Page still scrolls. */
+  .hero { padding: 14px 0 32px; }
   .hero__grid {
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    min-height: calc(100vh - var(--nav-h) - 56px);   /* fallback for old browsers */
-    min-height: calc(100svh - var(--nav-h) - 56px);  /* stable: ignores dynamic toolbars */
+    align-items: center;
+    gap: 20px;
+    min-height: calc(100vh - var(--nav-h) - 46px);   /* fallback for old browsers */
+    min-height: calc(100svh - var(--nav-h) - 46px);  /* stable: ignores dynamic toolbars */
   }
-  .hero__media {
-    order: -1;
-    flex: 1 1 auto;
-    min-height: 0;          /* allow the phone to shrink below its natural size */
-    /* default align-items: stretch lets the phone fill the leftover height */
+  .hero__media { order: -1; }
+  .hero__copy {
+    width: 100%;
+    margin-top: auto;         /* push the copy + download button toward the bottom */
   }
-  .hero__copy { flex: 0 0 auto; }
-  .hero__brand { margin-bottom: 12px; }
-  .hero h1 { font-size: clamp(30px, 6.5vw, 44px); margin-bottom: 12px; }
-  .hero__sub { margin-bottom: 18px; }
+  .hero__brand { display: none; }             /* remove the extra wordmark under the phone */
+  .hero__sub--full { display: none; }         /* swap in the tighter one-liner on mobile */
+  .hero__sub--tight { display: block; margin-bottom: 20px; }
+  .hero h1 { font-size: clamp(28px, 7vw, 40px); margin-bottom: 12px; }
 
-  /* Phone is sized by the leftover height (via align-self: stretch); width
-     follows from the aspect ratio. Capped so it never dominates a tall screen. */
+  /* Phone keeps its true proportions (width-driven, so the screen matches the
+     recording and nothing is cropped). Width is clamped by the available height
+     so the copy below always stays in view; internal radii/buttons scaled down
+     to read correctly at this smaller size. */
   .hero__media .phone {
-    width: auto;
-    align-self: stretch;
-    max-height: 56svh;
-    min-height: 220px;
-    aspect-ratio: 1206 / 2622;
-    padding: 9px;
+    width: min(200px, calc((100svh - 336px) * 0.44));
+    min-width: 132px;
+    padding: 6px;
+    border-radius: 24px;
   }
-  .hero__media .phone__screen { aspect-ratio: auto; height: 100%; }
+  .hero__media .phone__screen { border-radius: 18px; }
+  .hero__media .phone__btn { width: 2px; }
+  .hero__media .phone__btn--silent  { height: 14px; }
+  .hero__media .phone__btn--volup   { height: 30px; }
+  .hero__media .phone__btn--voldown { height: 30px; }
+  .hero__media .phone__btn--power   { height: 44px; }
 
   .nav__toggle { display: inline-flex; }
   .nav__links {

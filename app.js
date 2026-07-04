@@ -201,6 +201,55 @@
     els.forEach(function (el) { io.observe(el); });
   }
 
+  /* ---- Mobile-friendly video autoplay ------------------------------
+     Muted, inline videos are allowed to autoplay, but WebKit (iOS Safari,
+     and iOS browsers like DuckDuckGo that share the WebKit engine) is
+     finicky: the declarative `autoplay` attribute frequently fails until
+     the clip is decoded and actually on screen, leaving a tap-to-play
+     button. Nudge each demo to play programmatically (muted), retrying
+     when it's ready, when it scrolls into view, and — as a last resort —
+     on the first user interaction.                                       */
+  function videoAutoplay() {
+    var vids = Array.prototype.slice.call(document.querySelectorAll('video.demo-video'));
+    if (!vids.length) return;
+
+    function play(v) {
+      // iOS honours the muted *property*; set it before calling play().
+      v.muted = true;
+      v.defaultMuted = true;
+      var p;
+      try { p = v.play(); } catch (e) { return; }
+      if (p && typeof p.catch === 'function') { p.catch(function () { /* retried elsewhere */ }); }
+    }
+
+    vids.forEach(function (v) {
+      if (v.readyState >= 2) play(v);
+      v.addEventListener('loadeddata', function () { play(v); });
+      v.addEventListener('canplay', function () { play(v); });
+    });
+
+    // Retry when a clip scrolls into view (covers demos below the fold, and
+    // any video WebKit declined to start while off screen). Never pauses —
+    // the clips just loop, matching the original always-on autoplay.
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting) play(en.target);
+        });
+      }, { threshold: 0.2 });
+      vids.forEach(function (v) { io.observe(v); });
+    }
+
+    // Final fallback: kick playback off the first user gesture.
+    function kick() {
+      vids.forEach(play);
+      document.removeEventListener('touchstart', kick);
+      document.removeEventListener('click', kick);
+    }
+    document.addEventListener('touchstart', kick, { passive: true });
+    document.addEventListener('click', kick);
+  }
+
   /* ---- Init -------------------------------------------------------- */
   function init() {
     buildEmail();
@@ -210,6 +259,7 @@
     activeSection();
     stickyCta();
     reveal();
+    videoAutoplay();
     trackSource();
   }
 
